@@ -1,2 +1,2 @@
-# webdev-summer1-team2020
-Web development project for CS5610
+# Web Development Project for CS5610 Summer 1 2018
+
