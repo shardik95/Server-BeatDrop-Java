@@ -2,15 +2,10 @@ package com.example.BeatDropServer.services;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.BeatDropServer.model.Hello;
-import com.example.BeatDropServer.repositories.HelloRepository;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -20,13 +15,7 @@ import okhttp3.Response;
 
 @RestController
 @CrossOrigin(origins="*")
-public class HelloService {
-	@Autowired
-	HelloRepository repository;	
-	@GetMapping("/api/hello")
-	public Iterable<Hello> findAllHellos() {
-		return repository.findAll();
-	}
+public class SpotifyAccountService {
 	
 	@GetMapping("/api/accessToken")
 	public String getAccessToken() throws IOException {
