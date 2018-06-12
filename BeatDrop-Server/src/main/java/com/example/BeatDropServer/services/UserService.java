@@ -18,7 +18,7 @@ import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.UserRepository;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 public class UserService {
 		
 	@Autowired
@@ -48,9 +48,22 @@ public class UserService {
 	
 	@GetMapping("/api/profile")
 	public User profile(HttpSession session) {
-		User currentUser = (User) session.getAttribute("currentUser");	
-		//System.out.println(currentUser);
-		return currentUser;
+		User user = (User) session.getAttribute("currentUser");	
+		if(user==null) {
+			User falseUser =new User();
+			falseUser.setUserName("CANNOT FIND");
+			return falseUser;
+		}
+		List<User> users=(List<User>) userRepository.findByCredentials(user.getUserName(), user.getPassword());
+		if(users.isEmpty())
+		{
+			User falseUser =new User();
+			falseUser.setUserName("CANNOT FIND");
+			return falseUser;
+		}
+		else {
+			return users.get(0);
+		}
 	}
 
 	
@@ -96,6 +109,11 @@ public class UserService {
 		else {
 			return null;
 		}
+	}
+	
+	@GetMapping("/api/logout")
+	public void logoutUser(HttpSession session) {
+		session.invalidate();
 	}
 	
 }

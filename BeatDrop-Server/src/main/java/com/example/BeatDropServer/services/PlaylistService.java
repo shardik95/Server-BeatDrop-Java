@@ -17,7 +17,7 @@ import com.example.BeatDropServer.repositories.PlaylistRepository;
 import com.example.BeatDropServer.repositories.UserRepository;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 public class PlaylistService {
 	
 	@Autowired
