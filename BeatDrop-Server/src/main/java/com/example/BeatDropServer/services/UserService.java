@@ -1,12 +1,14 @@
 package com.example.BeatDropServer.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +49,7 @@ public class UserService {
 	@GetMapping("/api/profile")
 	public User profile(HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentUser");	
-		System.out.println(currentUser);
+		//System.out.println(currentUser);
 		return currentUser;
 	}
 
@@ -64,7 +66,7 @@ public class UserService {
 		}
 		else {
 			session.setAttribute("currentUser", user);
-			System.out.println(session.getAttribute("currentUser"));
+			//System.out.println(session.getAttribute("currentUser"));
 			return users.get(0);
 		}
 	}
@@ -85,6 +87,15 @@ public class UserService {
 		return null;
 	}
 	
-	
+	@GetMapping("/api/user/{userId}")
+	public User findUserById(@PathVariable("userId") int id) {
+		Optional<User> data = userRepository.findById(id);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		else {
+			return null;
+		}
+	}
 	
 }
