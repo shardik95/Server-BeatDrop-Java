@@ -1,5 +1,6 @@
 package com.example.BeatDropServer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Playlist {
 	private String playlistName;
 	
 	@ManyToMany(mappedBy = "playlists")
-	private List<Song> songs;
+	private List<Song> songs=new ArrayList<Song>();
 	 
 	 @ManyToOne
 	 @JsonIgnore

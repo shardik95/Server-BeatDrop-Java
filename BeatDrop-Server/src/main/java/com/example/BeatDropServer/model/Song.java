@@ -1,5 +1,6 @@
 package com.example.BeatDropServer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.example.BeatDropServer.model.Playlist;;
+import com.example.BeatDropServer.model.Playlist;
+import com.fasterxml.jackson.annotation.JsonIgnore;;
 
 
 @Entity
@@ -27,9 +29,10 @@ public class Song {
 	private String imgUrl;
 	private String spotifySongId;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "song_playlist", joinColumns = @JoinColumn(name = "song_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "playlist_id", referencedColumnName = "id"))
-	private List<Playlist> playlists;
+	@JsonIgnore
+	private List<Playlist> playlists=new ArrayList<Playlist>();
 	
 	
 	public List<Playlist> getPlaylists() {

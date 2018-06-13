@@ -1,7 +1,5 @@
 package com.example.BeatDropServer.services;
 
-import java.util.Iterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +18,16 @@ public class SongService {
 	
 	@PostMapping("/api/song")
 	public Song addSongInPlaylist(@RequestBody Song song) {
-		Iterable<Song> data= songRepository.findByTrackId(song.getSpotifySongId());
-		Iterator<Song> itr=data.iterator();
-		if(itr.hasNext()) {
-			return itr.next();
+		
+		Song data= songRepository.findByTrackId(song.getSpotifySongId());
+		//System.out.println("123");
+		if(data!=null) {
+			return data;
 		}
 		else {
 			return songRepository.save(song);
 		}
+	 /* songRepository.save(song);
+	  return song;*/
 	}
 }

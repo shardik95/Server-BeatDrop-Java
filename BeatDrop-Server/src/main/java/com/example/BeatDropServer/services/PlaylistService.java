@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.BeatDropServer.model.Playlist;
+import com.example.BeatDropServer.model.Song;
 import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.PlaylistRepository;
+import com.example.BeatDropServer.repositories.SongRepository;
 import com.example.BeatDropServer.repositories.UserRepository;
 
 @RestController
@@ -25,7 +27,12 @@ public class PlaylistService {
 	private PlaylistRepository playlistRepository;
 	
 	@Autowired
+	private SongRepository songRepository;
+	
+	@Autowired
 	private UserRepository userRepository;
+	
+	private SongService songService = new SongService();
 	
 	@GetMapping("/api/user/{userId}/playlist")
 	public List<Playlist> getPlaylistForUser(@PathVariable("userId") int userId){
@@ -54,12 +61,27 @@ public class PlaylistService {
 		playlistRepository.deleteById(playlistId);
 	}
 	
-	/*@PostMapping("/api/playlist/{playlistId}/track/{trackId}")
-	public Playlist addSongToPlaylist(@PathVariable("playlistId") int playlistId,@PathVariable("trackId") int trackId) {
+	@PostMapping("/api/playlist/{playlistId}/track/{trackId}")
+	public Playlist addSongToPlaylist(@PathVariable("playlistId") int playlistId,@PathVariable("trackId") String trackId
+			,@RequestBody Song song) {
 		Optional<Playlist> data = playlistRepository.findById(playlistId);
+		//System.out.println("--"+data);
 		if(data.isPresent()) {
 			Playlist playlist=data.get();
-			
+			//System.out.println("--"+playlist.getPlaylistName());
+			Song s=songRepository.save(song);
+			//System.out.println("--"+s.getSongName());
+			List<Song> songlist= playlist.getSongs();
+			//System.out.println("--"+songlist);
+			songlist.add(s);
+			playlist.setSongs(songlist);
+			//System.out.println("--here");
+			List<Playlist> play_list=s.getPlaylists();
+			play_list.add(playlist);
+			s.setPlaylists(play_list);
+			songRepository.save(s);
+			return playlistRepository.save(playlist);
 		}
-	}*/
+		return null;
+	}
 }
