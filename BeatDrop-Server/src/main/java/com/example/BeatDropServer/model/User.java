@@ -34,11 +34,11 @@ public class User {
 	
 	@ManyToOne
 	@JsonIgnore
-	private User userFollower=this;
+	private User userFollower;
 	
 	@ManyToOne
 	@JsonIgnore
-	private User userFollowing=this;
+	private User userFollowing;
 	
 	@OneToMany(mappedBy="userFollower",cascade=CascadeType.REMOVE,orphanRemoval=true)
 	private List<User> followers;
