@@ -8,7 +8,7 @@ import com.example.BeatDropServer.model.Song;
 
 public interface SongRepository extends CrudRepository<Song, Integer>{
 	
-	@Query("SELECT s from Song s WHERE s.spotifySongId=:spotifySongId")
-	Song findByTrackId(@Param("spotifySongId") String spotifySongId);
+	@Query("SELECT s FROM Song s WHERE s.spotifySongId=:spotifySongId")
+	Song findByTrackId(@Param("spotifySongId") String s);
 	
 }

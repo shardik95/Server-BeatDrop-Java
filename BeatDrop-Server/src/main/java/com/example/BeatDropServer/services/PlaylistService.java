@@ -65,17 +65,12 @@ public class PlaylistService {
 	public Playlist addSongToPlaylist(@PathVariable("playlistId") int playlistId,@PathVariable("trackId") String trackId
 			,@RequestBody Song song) {
 		Optional<Playlist> data = playlistRepository.findById(playlistId);
-		//System.out.println("--"+data);
 		if(data.isPresent()) {
 			Playlist playlist=data.get();
-			//System.out.println("--"+playlist.getPlaylistName());
 			Song s=songRepository.save(song);
-			//System.out.println("--"+s.getSongName());
 			List<Song> songlist= playlist.getSongs();
-			//System.out.println("--"+songlist);
 			songlist.add(s);
 			playlist.setSongs(songlist);
-			//System.out.println("--here");
 			List<Playlist> play_list=s.getPlaylists();
 			play_list.add(playlist);
 			s.setPlaylists(play_list);
