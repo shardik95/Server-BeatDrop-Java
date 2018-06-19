@@ -116,4 +116,10 @@ public class UserService {
 		session.invalidate();
 	}
 	
+	@GetMapping("/api/user/search/q={query}")
+	public List<User> getUserByUsernameOrFirstName(@PathVariable("query") String query){
+		return userRepository.getUserByUsernameOrFirstName(query);
+
+	}
+	
 }
