@@ -1,5 +1,6 @@
 package com.example.BeatDropServer.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,11 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 public class User {
@@ -32,52 +29,34 @@ public class User {
 	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
 	private List<Playlist> playlists;
 	
-	@ManyToOne
-	@JsonIgnore
-	private User userFollower;
+	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
+	private List<Follower> followers = new ArrayList<>();
 	
-	@ManyToOne
-	@JsonIgnore
-	private User userFollowing;
+	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
+	private List<Following> following = new ArrayList<>();
 	
-	@OneToMany(mappedBy="userFollower",cascade=CascadeType.REMOVE,orphanRemoval=true)
-	private List<User> followers;
-	
-	@OneToMany(mappedBy="userFollowing",cascade=CascadeType.REMOVE,orphanRemoval=true)
-	private List<User> following;
-	
-	
-	
+
 	public List<Playlist> getPlaylists() {
 		return playlists;
 	}
 	public void setPlaylists(List<Playlist> playlists) {
 		this.playlists = playlists;
 	}
-	public User getUserFollower() {
-		return userFollower;
-	}
-	public void setUserFollower(User userFollower) {
-		this.userFollower = userFollower;
-	}
-	public User getUserFollowing() {
-		return userFollowing;
-	}
-	public void setUserFollowing(User userFollowing) {
-		this.userFollowing = userFollowing;
-	}
-	public List<User> getFollowers() {
+	
+	
+	public List<Follower> getFollowers() {
 		return followers;
 	}
-	public void setFollowers(List<User> followers) {
+	public void setFollowers(List<Follower> followers) {
 		this.followers = followers;
 	}
-	public List<User> getFollowing() {
+	public List<Following> getFollowing() {
 		return following;
 	}
-	public void setFollowing(List<User> following) {
+	public void setFollowing(List<Following> following) {
 		this.following = following;
 	}
+	
 	public int getId() {
 		return id;
 	}

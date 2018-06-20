@@ -46,6 +46,8 @@ public class UserService {
 		}
 	}
 	
+	
+	
 	@GetMapping("/api/profile")
 	public User profile(HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");	
@@ -119,7 +121,13 @@ public class UserService {
 	@GetMapping("/api/user/search/q={query}")
 	public List<User> getUserByUsernameOrFirstName(@PathVariable("query") String query){
 		return userRepository.getUserByUsernameOrFirstName(query);
-
+		
 	}
+	
+	/*@GetMapping("/api/user/follower")
+	public List<User> getFollowers(HttpSession session){
+		User u = (User) session.getAttribute("currentUser");
+		return u.getFollowers();
+	}*/
 	
 }
