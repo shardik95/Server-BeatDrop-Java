@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,11 @@ public class FollowingService {
 			return 1;
 	}
 	
+	@GetMapping("/api/getFollowing/{userName}/{followingName}")
+	public Following getFollowingRecord(@PathVariable("userName") String userName,@PathVariable("followingName") String followingName) {
+		return followingRepository.findFollowingRecord(userName, followingName).get(0);
+	}
+	
 	@PostMapping("/api/user/following/{userId}")
 	public List<Following> addFollowing(@PathVariable("userId") int toFollow,@RequestBody User me){
 		Optional<User> data = userRepository.findById(toFollow);
@@ -53,6 +59,7 @@ public class FollowingService {
 			following.setUserName(follow.getUserName());
 			following.setMyId(follow.getId());
 			following.setUser(me);
+			following.setFollowingName(me.getUserName());
 			
 			followingRepository.save(following);
 			
@@ -68,6 +75,7 @@ public class FollowingService {
 			follower.setUserName(me.getUserName());
 			follower.setMyid(me.getId());
 			follower.setUser(follow);
+			follower.setFollowingName(follow.getUserName());
 			followerRepository.save(follower);
 			
 			List<Follower> followerList = follow.getFollowers();

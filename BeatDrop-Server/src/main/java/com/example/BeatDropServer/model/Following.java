@@ -19,11 +19,19 @@ public class Following {
 	private String lastName;
 	private String userName;
 	private int myId;
+	private String followingName;
 	
 	@ManyToOne
 	@JsonIgnore
 	private User user;
 	
+	
+	public String getFollowingName() {
+		return followingName;
+	}
+	public void setFollowingName(String followingName) {
+		this.followingName = followingName;
+	}
 	public int getMyId() {
 		return myId;
 	}
