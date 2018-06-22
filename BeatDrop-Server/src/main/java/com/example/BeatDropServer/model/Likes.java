@@ -25,7 +25,22 @@ public class Likes {
 	private Date date;
 	private String typeId;
 	private String title;
+	private String name;
+	private String imgUrl;
 	
+	
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}

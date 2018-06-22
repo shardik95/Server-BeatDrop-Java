@@ -54,7 +54,6 @@ public class User {
 		this.playlists = playlists;
 	}
 	
-	
 	public List<Likes> getLikes() {
 		return likes;
 	}

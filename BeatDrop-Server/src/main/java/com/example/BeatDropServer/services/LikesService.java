@@ -38,6 +38,8 @@ public class LikesService {
 		likeObj.setTitle(like.getTitle());
 		likeObj.setType(like.getType());
 		likeObj.setTypeId(like.getTypeId());
+		likeObj.setImgUrl(like.getImgUrl());
+		likeObj.setName(like.getName());
 		likeObj.setUser(user);
 		return likesRepository.save(likeObj);
 	}

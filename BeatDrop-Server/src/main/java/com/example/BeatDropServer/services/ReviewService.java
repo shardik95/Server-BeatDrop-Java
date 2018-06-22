@@ -39,6 +39,8 @@ public class ReviewService {
 		rev.setType(review.getType());
 		rev.setTypeId(review.getTypeId());
 		rev.setStars(review.getStars());
+		rev.setName(review.getName());
+		rev.setImgUrl(review.getImgUrl());
 		rev.setUser(user);
 		return reviewRepository.save(rev);
 	}
