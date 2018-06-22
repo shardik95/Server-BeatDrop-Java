@@ -35,7 +35,18 @@ public class User {
 	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
 	private List<Following> following = new ArrayList<>();
 	
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Likes> likes = new ArrayList<>();
+	
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Review> reviews = new ArrayList<>();
 
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 	public List<Playlist> getPlaylists() {
 		return playlists;
 	}
@@ -44,6 +55,12 @@ public class User {
 	}
 	
 	
+	public List<Likes> getLikes() {
+		return likes;
+	}
+	public void setLikes(List<Likes> likes) {
+		this.likes = likes;
+	}
 	public List<Follower> getFollowers() {
 		return followers;
 	}
