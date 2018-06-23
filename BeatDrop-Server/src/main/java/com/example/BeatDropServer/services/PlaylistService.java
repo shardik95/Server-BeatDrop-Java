@@ -57,8 +57,9 @@ public class PlaylistService {
 	}
 	
 	@DeleteMapping("/api/playlist/{playlistId}")
-	public void deletePlaylist(@PathVariable("playlistId") int playlistId) {
+	public int deletePlaylist(@PathVariable("playlistId") int playlistId) {
 		playlistRepository.deleteById(playlistId);
+		return 1;
 	}
 	
 	@PostMapping("/api/playlist/{playlistId}/track/{trackId}")

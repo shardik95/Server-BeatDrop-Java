@@ -65,15 +65,14 @@ public class FileService {
 	
 	@DeleteMapping("/api/file/{filename}/{id}")
 	public String deleteFile(@PathVariable("filename") String filename,@PathVariable("id") int id) {
-		URL classLoader = this.getClass().getResource(filename);
-		System.out.println(classLoader.toString());
-		try {
-			   File file = new ClassPathResource(filename).getFile();  
-			   file.delete();
-			   uploadSongService.deleteSong(id);
-			} catch (IOException e) {
-				System.out.println("yyy");	
-			}
+		uploadSongService.deleteSong(id);
+//		try {
+//			   File file = new ClassPathResource(filename).getFile();  
+//			   file.delete();
+//			   uploadSongService.deleteSong(id);
+//			} catch (IOException e) {
+//				System.out.println("yyy");	
+//			}
 		return "success";
 	}
 	

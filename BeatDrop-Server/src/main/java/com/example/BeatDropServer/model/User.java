@@ -40,10 +40,10 @@ public class User {
 	private List<Following> following = new ArrayList<>();
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
-	private List<Likes> likes = new ArrayList<>();
+	private List<Likes> likes;
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
-	private List<Review> reviews = new ArrayList<>();
+	private List<Review> reviews;
 	
 
 	public String getType() {

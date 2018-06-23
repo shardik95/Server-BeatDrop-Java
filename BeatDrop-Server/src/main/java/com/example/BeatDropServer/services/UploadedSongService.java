@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,8 +38,10 @@ public class UploadedSongService {
 		return null;
 	}
 	
-	public void deleteSong(int id) {
+	@DeleteMapping("/api/uploadedSong/{songId}")
+	public int deleteSong(@PathVariable("songId") int id) {
 		uploadedRepository.deleteById(id);
+		return 1;
 	}
 	
 }

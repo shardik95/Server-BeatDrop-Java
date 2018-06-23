@@ -20,12 +20,19 @@ public class Follower {
 	private String userName;
 	private int myid;
 	private String followingName;
+	private String type;
 	
 	@ManyToOne
 	@JsonIgnore
 	private User user;
 	
 	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getFollowingName() {
 		return followingName;
 	}

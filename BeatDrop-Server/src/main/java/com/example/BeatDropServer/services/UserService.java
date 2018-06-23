@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -100,6 +101,8 @@ public class UserService {
 		return null;
 	}
 	
+	
+	
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(@PathVariable("userId") int id) {
 		Optional<User> data = userRepository.findById(id);
@@ -122,10 +125,10 @@ public class UserService {
 		
 	}
 	
-	/*@GetMapping("/api/user/follower")
-	public List<User> getFollowers(HttpSession session){
-		User u = (User) session.getAttribute("currentUser");
-		return u.getFollowers();
-	}*/
+	@DeleteMapping("/api/user/{userId}")
+	public int deleteUserById(@PathVariable("userId") int userId) {
+		userRepository.deleteById(userId);
+		return 1;
+	}
 	
 }
