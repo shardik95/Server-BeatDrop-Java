@@ -9,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 	
 	@Id
@@ -25,6 +28,7 @@ public class User {
 	private String password;
 	private Date dob;
 	private String phone;
+	private String type;
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
 	private List<Playlist> playlists;
@@ -40,7 +44,14 @@ public class User {
 	
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Review> reviews = new ArrayList<>();
+	
 
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public List<Review> getReviews() {
 		return reviews;
 	}

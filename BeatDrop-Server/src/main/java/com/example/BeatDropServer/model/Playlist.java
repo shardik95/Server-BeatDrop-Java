@@ -20,6 +20,7 @@ public class Playlist {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String playlistName;
+	private String playlistType;
 	
 	@ManyToMany(mappedBy = "playlists")
 	private List<Song> songs=new ArrayList<Song>();
@@ -28,8 +29,14 @@ public class Playlist {
 	 @JsonIgnore
 	 private User user;
 	 
-	 
-	
+	 public String getPlaylistType() {
+		return playlistType;
+	}
+
+	public void setPlaylistType(String playlistType) {
+		this.playlistType = playlistType;
+	}
+
 	public User getUser() {
 		return user;
 	}
