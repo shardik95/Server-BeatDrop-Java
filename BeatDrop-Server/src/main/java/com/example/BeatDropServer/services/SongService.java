@@ -16,8 +16,10 @@ import com.example.BeatDropServer.model.Song;
 import com.example.BeatDropServer.repositories.PlaylistRepository;
 import com.example.BeatDropServer.repositories.SongRepository;
 
+//https://beatdropapp.herokuapp.com
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class SongService {
 
 	@Autowired

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.UserRepository;
 
+//https://beatdropapp.herokuapp.com
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class UserService {
 		
 	@Autowired
@@ -86,7 +88,7 @@ public class UserService {
 	}
 	
 	@PutMapping("/api/user")
-	public User updateUser(@RequestBody User newUser) {
+	public User updateUser(@RequestBody User newUser,HttpSession session) {
 		List<User> users=(List<User>) userRepository.findUserByUserName(newUser.getUserName());
 		if(users.size()>0) {
 			User user=users.get(0);
@@ -96,6 +98,7 @@ public class UserService {
 			user.setDob(newUser.getDob());
 			user.setPassword(newUser.getPassword());
 			userRepository.save(user);
+			session.setAttribute("currentUser", user);
 			return user;
 		}
 		return null;
@@ -129,6 +132,22 @@ public class UserService {
 	public int deleteUserById(@PathVariable("userId") int userId) {
 		userRepository.deleteById(userId);
 		return 1;
+	}
+	
+	@PutMapping("/api/user/admin")
+	public User updateUser(@RequestBody User newUser) {
+		List<User> users=(List<User>) userRepository.findUserByUserName(newUser.getUserName());
+		if(users.size()>0) {
+			User user=users.get(0);
+			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
+			user.setPhone(newUser.getPhone());
+			user.setDob(newUser.getDob());
+			user.setPassword(newUser.getPassword());
+			userRepository.save(user);
+			return user;
+		}
+		return null;
 	}
 	
 }

@@ -22,8 +22,9 @@ import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.HostRepository;
 import com.example.BeatDropServer.repositories.TicketRepository;
 
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class TicketService {
 	
 	@Autowired
@@ -59,7 +60,7 @@ public class TicketService {
 			Ticket ticket1 =data.get();
 			ticket1.setEventName(ticket.getEventName());
 			ticket1.setAvailTickets(ticket.getAvailTickets());
-			//ticket1.setMaxTickets(""+(Integer.parseInt(ticket.getMaxTickets())-(Integer.parseInt(ticket1.getMaxTickets())-Integer.parseInt(ticket1.getAvailTickets()))));
+			ticket1.setMaxTickets(ticket.getMaxTickets());
 			ticket1.setPrice(ticket.getPrice());
 			return ticketRepository.save(ticket1);
 		}

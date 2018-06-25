@@ -1,6 +1,5 @@
 package com.example.BeatDropServer.services;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +21,9 @@ import com.example.BeatDropServer.repositories.HostSongRepository;
 import com.example.BeatDropServer.repositories.PartyRepository;
 import com.example.BeatDropServer.repositories.PlaylistRepository;
 
-
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class HostPlaylistService {
 	
 	@Autowired

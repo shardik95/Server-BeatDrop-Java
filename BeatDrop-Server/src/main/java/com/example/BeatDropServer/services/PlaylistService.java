@@ -19,8 +19,10 @@ import com.example.BeatDropServer.repositories.PlaylistRepository;
 import com.example.BeatDropServer.repositories.SongRepository;
 import com.example.BeatDropServer.repositories.UserRepository;
 
+//https://beatdropapp.herokuapp.com
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class PlaylistService {
 	
 	@Autowired
@@ -32,7 +34,6 @@ public class PlaylistService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	private SongService songService = new SongService();
 	
 	@GetMapping("/api/user/{userId}/playlist")
 	public List<Playlist> getPlaylistForUser(@PathVariable("userId") int userId){

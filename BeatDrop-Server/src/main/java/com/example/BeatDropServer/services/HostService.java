@@ -18,8 +18,10 @@ import com.example.BeatDropServer.model.Host;
 import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.HostRepository;
 
+//https://beatdropapp.herokuapp.com
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class HostService {
 	
 	@Autowired
@@ -53,7 +55,7 @@ public class HostService {
 	}
 	
 	@PutMapping("/api/host")
-	public User updateUser(@RequestBody Host newUser) {
+	public User updateUser(@RequestBody Host newUser,HttpSession session) {
 		List<Host> users=(List<Host>) hostRepository.findHostByUserName(newUser.getUserName());
 		if(users.size()>0) {
 			Host user=users.get(0);
@@ -62,6 +64,7 @@ public class HostService {
 			user.setPhone(newUser.getPhone());
 			user.setDob(newUser.getDob());
 			user.setPassword(newUser.getPassword());
+			session.setAttribute("currentUser", user);
 			hostRepository.save(user);
 			return user;
 		}

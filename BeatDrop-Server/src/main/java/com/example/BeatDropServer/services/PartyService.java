@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.BeatDropServer.model.Host;
 import com.example.BeatDropServer.model.HostPlaylist;
 import com.example.BeatDropServer.model.Party;
-import com.example.BeatDropServer.model.Playlist;
 import com.example.BeatDropServer.model.User;
 import com.example.BeatDropServer.repositories.HostRepository;
 import com.example.BeatDropServer.repositories.PartyRepository;
 
+//https://beatdropapp.herokuapp.com
+//@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
-@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
+@CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class PartyService {
 		
 	@Autowired
