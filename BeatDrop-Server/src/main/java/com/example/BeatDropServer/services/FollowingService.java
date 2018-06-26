@@ -25,6 +25,7 @@ import com.example.BeatDropServer.repositories.LikeRepository;
 import com.example.BeatDropServer.repositories.ReviewRepository;
 import com.example.BeatDropServer.repositories.UserRepository;
 
+//https://beatdropapp.herokuapp.com
 //@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
 @RestController
 @CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")

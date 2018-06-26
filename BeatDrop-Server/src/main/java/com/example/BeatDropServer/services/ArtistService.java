@@ -20,7 +20,7 @@ import com.example.BeatDropServer.repositories.ArtistRepository;
 import com.example.BeatDropServer.repositories.UserRepository;
 
 //@CrossOrigin(origins="http://localhost:3000",allowCredentials="true",allowedHeaders="*")
-
+//https://beatdropapp.herokuapp.com
 @RestController
 @CrossOrigin(origins="https://beatdropapp.herokuapp.com",allowCredentials="true",allowedHeaders="*")
 public class ArtistService {
