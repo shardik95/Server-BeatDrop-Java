@@ -27,7 +27,7 @@ public class SpotifyAccountService {
 		  .url("https://accounts.spotify.com/api/token")
 		  .post(body)
 		  .addHeader("Content-Type", "application/x-www-form-urlencoded")
-		  .addHeader("Authorization", "Basic MWFkYTcxMmFkODlkNDQ4Mjg2ZjhkODkyODY4NjIxZDU6MTg3NDE0MmVhZTQ5NDhiZWI3YTRjMzVkYmIyMjZkYzU=")
+		  .addHeader("Authorization", "Basic KEY")
 		  .addHeader("Cache-Control", "no-cache")
 		  .build();
 
